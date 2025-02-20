@@ -1,6 +1,6 @@
 # Python Game Collection
 
-[![Build and Release](https://github.com/username/py-games/actions/workflows/build.yml/badge.svg)](https://github.com/username/py-games/actions/workflows/build.yml)
+[![Build and Release](https://github.com/zzmzaizai/python-games/actions/workflows/build.yml/badge.svg)](https://github.com/username/py-games/actions/workflows/build.yml)
 
 English | [中文](doc/README-cn.md) | [日本語](doc/README-ja.md) | [한국어](doc/README-ko.md) | [Français](doc/README-fr.md) | [فارسی](doc/README-fa.md)
 
