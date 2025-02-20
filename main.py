@@ -21,6 +21,16 @@ WINDOW_HEIGHT = 600
 window = pygame.display.set_mode((int(WINDOW_WIDTH), int(WINDOW_HEIGHT)))
 pygame.display.set_caption('小游戏集合')
 
+# 设置窗口图标
+try:
+    import os
+    icon_path = os.path.join(os.path.dirname(__file__), 'resources', 'icon.ico')
+    icon = pygame.image.load(icon_path)
+    pygame.display.set_icon(icon)
+except Exception as e:
+    print(f'警告：无法加载图标文件：{str(e)}')
+    # 继续运行，使用默认图标
+
 # 延迟加载游戏类
 def load_game_class(game_name):
     """动态加载游戏类

@@ -12,8 +12,16 @@ def check_requirements():
 
 def create_icon():
     """创建应用图标"""
-    if not os.path.exists('resources/icon.ico'):
+    icon_path = os.path.join(os.path.dirname(__file__), 'resources', 'icon.ico')
+    if not os.path.exists(icon_path):
         print('警告: 未找到图标文件 icon.ico，将使用默认图标')
+    else:
+        # 确保dist/resources目录存在
+        dist_resources = os.path.join('dist', 'resources')
+        os.makedirs(dist_resources, exist_ok=True)
+        # 复制图标文件到dist/resources目录
+        import shutil
+        shutil.copy2(icon_path, os.path.join(dist_resources, 'icon.ico'))
 
 def build():
     """执行打包操作"""
@@ -47,11 +55,11 @@ def build():
         # 输出文件位置
         dist_dir = os.path.join(os.getcwd(), 'dist')
         if system == 'windows':
-            exe_path = os.path.join(dist_dir, '小游戏集合.exe')
+            exe_path = os.path.join(dist_dir, 'Python Game Collection.exe')
         elif system == 'darwin':
-            exe_path = os.path.join(dist_dir, '小游戏集合.app')
+            exe_path = os.path.join(dist_dir, 'Python Game Collection.app')
         else:
-            exe_path = os.path.join(dist_dir, '小游戏集合')
+            exe_path = os.path.join(dist_dir, 'Python Game Collection')
             
         if os.path.exists(exe_path):
             print(f'可执行文件已生成: {exe_path}')

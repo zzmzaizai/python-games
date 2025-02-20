@@ -12,7 +12,7 @@ a = Analysis(
     ['main.py'],              # 主脚本文件
     pathex=[],                # 额外的导入路径
     binaries=[],              # 需要包含的二进制文件
-    datas=[],                 # 需要包含的数据文件
+    datas=[("resources/icon.ico", "resources")],  # 需要包含的数据文件
     hiddenimports=['pygame'], # 隐式导入的模块
     hookspath=[],             # 自定义钩子脚本路径
     hooksconfig={},           # 钩子配置
@@ -36,7 +36,7 @@ exe = EXE(
     a.zipfiles,                      # zip文件
     a.datas,                         # 数据文件
     [],                              # 额外选项
-    name='小游戏集合',                # 输出文件名
+    name='Python Game Collection',   # 输出文件名
     debug=False,                     # 是否开启调试
     bootloader_ignore_signals=False,  # 是否忽略引导加载器信号
     strip=False,                     # 是否剥离符号表
@@ -48,14 +48,13 @@ exe = EXE(
     argv_emulation=False,            # 是否模拟命令行参数
     target_arch=None,                # 目标架构，让PyInstaller自动检测
     codesign_identity=None,          # 代码签名身份
-    icon='resources/icon.ico',       # 应用图标路径
     entitlements_file=None,          # 授权文件
-    icon='icon.ico',                 # 应用图标
+    icon='resources/icon.ico',        # 应用程序图标
     info_plist={
         'CFBundleShortVersionString': '1.0.0',
         'CFBundleIdentifier': 'com.minigames.collection',
-        'CFBundleName': '小游戏集合',
-        'CFBundleDisplayName': '小游戏集合',
+        'CFBundleName': 'Python Game Collection',
+        'CFBundleDisplayName': 'Python Game Collection',
         'CFBundlePackageType': 'APPL',
         'LSMinimumSystemVersion': '10.13'
     }                               # macOS应用信息
