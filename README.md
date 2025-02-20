@@ -1,6 +1,6 @@
 # Python Game Collection
 
-English | [简体中文](README-cn.md)
+English | [中文](doc/README-cn.md) | [日本語](doc/README-ja.md) | [한국어](doc/README-ko.md) | [Français](doc/README-fr.md) | [فارسی](doc/README-fa.md)
 
 A collection of classic arcade and puzzle games built with Pygame, featuring seven entertaining games: Breakout, Snake, Pacman, Tetris, Pong, Gomoku(Five in a Row) and 2048. The project implements smooth menu transitions, gamepad support, and modern UI design. Perfect for game development learning and entertainment.
 

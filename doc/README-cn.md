@@ -1,6 +1,6 @@
 # Python 游戏合集
 
-[English](README.md) | 简体中文
+[English](../README.md) | 中文 | [日本語](README-ja.md) | [한국어](README-ko.md) | [Français](README-fr.md) | [فارسی](README-fa.md)
 
 这是一个基于Pygame开发的经典游戏合集项目，包含打砖块、贪吃蛇、吃豆人、俄罗斯方块、弹球、五子棋和2048共七款游戏，具有平滑的菜单过渡效果、完整的手柄支持和现代化的用户界面。
 
