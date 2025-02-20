@@ -1,0 +1,85 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        python-version: ['3.8', '3.9', '3.10']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        pip install -r requirements.txt
+        pip install pyinstaller pytest pytest-cov
+
+    - name: Run tests
+      run: |
+        pytest tests/ --cov=games --cov-report=xml
+
+    - name: Upload coverage
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        fail_ci_if_error: true
+
+    - name: Build with PyInstaller
+      run: |
+        pyinstaller build.py --onefile --noconsole --icon=resources/icon.ico --name="GameCollection-${{ runner.os }}"
+      env:
+        PYTHONOPTIMIZE: 2
+
+    - name: Test executable
+      run: |
+        cd dist
+        ./*GameCollection* --version || true
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: GameCollection-${{ runner.os }}-py${{ matrix.python-version }}
+        path: dist/*
+        retention-days: 5
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+
+    steps:
+    - name: Download all artifacts
+      uses: actions/download-artifact@v3
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |          
+          GameCollection-Windows/*
+          GameCollection-macOS/*
+          GameCollection-Linux/*
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
