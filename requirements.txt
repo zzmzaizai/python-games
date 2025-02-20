@@ -1,0 +1,5 @@
+pygame==2.5.2
+kivy==2.2.1
+buildozer==1.5.0
+cython==0.29.36
+sdl2_ttf==2.0.15

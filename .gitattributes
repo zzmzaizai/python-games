@@ -1,0 +1,18 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Python files
+*.py text diff=python
+
+# Documentation
+*.md text diff=markdown
+
+# Requirements files
+requirements.txt text
+
+# Binary files
+*.ico binary
+*.exe binary
+*.pyz binary
+*.pkg binary
+*.zip binary
